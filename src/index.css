@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fb;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f4f5f7;
+  --bg-sidebar: #f8f9fb;
+  --bg-sidebar-active: #eef0ff;
+  --border-color: #e8e8ec;
+  --border-color-hover: #d0d0d8;
+  
+  --glass-bg: rgba(255,255,255,0.12);
+  --glass-blur: blur(12px);
+
+  --accent-primary: #5b6abf;
+  --accent-secondary: #4f5bd5;
+  --accent-blue: #5b6abf;
+
+  --text-primary: #1a1a2e;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --text-inverse: #ffffff;
+
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --star-active: #f5a623;
+
+  
+  --stat-red: #f87171;
+  --stat-red-bg: #fef2f2;
+  --stat-green: #34d399;
+  --stat-green-bg: #ecfdf5;
+  --stat-blue: #60a5fa;
+  --stat-blue-bg: #eff6ff;
+
+  --sidebar-width: 260px;
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.25s ease forwards;
+}
+
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+
+button, a {
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th {
+  font-weight: 600;
+  text-align: left;
+  padding: 14px 20px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+}
+
+td {
+  padding: 16px 20px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background-color: var(--bg-card-hover);
+}
+
+
+input, textarea, select {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(91, 106, 191, 0.1);
+  outline: none;
+  background: var(--bg-primary);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted);
+}
+
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  background: var(--bg-secondary);
+}
+
+.main-content {
+  flex-grow: 1;
+  margin-left: var(--sidebar-width);
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: margin-left 0.3s ease;
+  background: var(--bg-secondary);
+}
+
+.main-content-body {
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-grow: 1;
+}
+
+@media (max-width: 1024px) {
+  .main-content-body {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+  .main-content {
+    margin-left: 0;
+    margin-top: 60px;
+    padding: 0;
+  }
+  .main-content-body {
+    padding: 16px;
+  }
+}
+
+
+/* temporary reset override */
