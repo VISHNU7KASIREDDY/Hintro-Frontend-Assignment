@@ -228,6 +228,3 @@ export default function FeedbackModal({ isOpen, onClose, onFeedbackAdded }) {
     </div>
   );
 }
-
-
-// temporary star rating validation
