@@ -343,6 +343,3 @@ export default function App() {
     </div>
   );
 }
-
-
-// temporary context shell config
