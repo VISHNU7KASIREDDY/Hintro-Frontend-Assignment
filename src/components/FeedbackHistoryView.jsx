@@ -1,4 +1,4 @@
-import { MessageSquarePlus, Play, Calendar, Star, Clock } from 'lucide-react';
+import { Play, Star } from 'lucide-react';
 import './FeedbackHistoryView.css';
 
 export default function FeedbackHistoryView({ feedbacks, onOpenFeedback }) {

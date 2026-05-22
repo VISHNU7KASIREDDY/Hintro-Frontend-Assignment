@@ -81,6 +81,10 @@
   gap: 14px;
 }
 
+.recent-calls-section .section-title {
+  text-align: center;
+}
+
 .section-title {
   font-size: 1.1rem;
   font-weight: 700;

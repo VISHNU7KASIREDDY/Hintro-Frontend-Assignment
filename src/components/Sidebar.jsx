@@ -6,9 +6,7 @@ import {
   Globe, 
   History, 
   MessageSquarePlus, 
-  Zap, 
-  Download,
-  Info,
+  Info, 
   X,
   Menu
 } from 'lucide-react';
@@ -17,9 +15,6 @@ import './Sidebar.css';
 export default function Sidebar({ 
   activeView, 
   setActiveView, 
-  profile, 
-  dashboardData,
-  onLogout,
   onOpenFeedbackModal,
   mobileOpen,
   setMobileOpen

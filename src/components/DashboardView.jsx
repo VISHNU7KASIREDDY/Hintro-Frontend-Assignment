@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { 
   Upload, 
   Video, 
@@ -15,7 +14,6 @@ export default function DashboardView({
   calls, 
   loading, 
   onStartCall, 
-  onWatchTutorial, 
   getInitials 
 }) {
   

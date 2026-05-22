@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { api } from './api';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
@@ -139,13 +139,25 @@ const FALLBACKS = {
 };
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState('u2');
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem('hintro_isLoggedIn') === 'true';
+  });
+  const [userId, setUserId] = useState(() => {
+    return localStorage.getItem('hintro_userId') || 'u2';
+  });
   const [activeView, setActiveView] = useState('dashboard');
   const [mobileOpen, setMobileOpen] = useState(false);
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-  const [feedbacks, setFeedbacks] = useState([]);
+  const [feedbacks, setFeedbacks] = useState(() => {
+    try {
+      const stored = localStorage.getItem('hintro_feedbacks');
+      return stored ? JSON.parse(stored) : [];
+    } catch (err) {
+      console.error('Error loading feedbacks:', err);
+      return [];
+    }
+  });
 
   
   const [profile, setProfile] = useState(null);
@@ -154,38 +166,23 @@ export default function App() {
   const [calls, setCalls] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  
-  useEffect(() => {
-    loadFeedbacks();
-  }, []);
-
-  
-  useEffect(() => {
-    const stored = localStorage.getItem('hintro_isLoggedIn');
-    const storedUser = localStorage.getItem('hintro_userId');
-    if (stored === 'true' && storedUser) {
-      setIsLoggedIn(true);
-      setUserId(storedUser);
-    }
-  }, []);
-
-  
-  useEffect(() => {
-    if (isLoggedIn) {
-      fetchDashboardData();
-    }
-  }, [userId, isLoggedIn]);
-
-  const loadFeedbacks = () => {
+  const loadFeedbacks = useCallback(() => {
     try {
       const stored = localStorage.getItem('hintro_feedbacks');
       setFeedbacks(stored ? JSON.parse(stored) : []);
     } catch (err) {
       console.error('Error loading feedbacks:', err);
     }
-  };
+  }, []);
 
-  const fetchDashboardData = async () => {
+  const applyFallbacks = useCallback(() => {
+    setProfile(FALLBACKS[userId].profile);
+    setDashboardData(FALLBACKS[userId].dashboard);
+    setStats(FALLBACKS[userId].stats);
+    setCalls(FALLBACKS[userId].history);
+  }, [userId]);
+
+  const fetchDashboardData = useCallback(async () => {
     setLoading(true);
     try {
       const [profileRes, dashRes, statsRes, historyRes] = await Promise.allSettled([
@@ -224,14 +221,14 @@ export default function App() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId, applyFallbacks]);
 
-  const applyFallbacks = () => {
-    setProfile(FALLBACKS[userId].profile);
-    setDashboardData(FALLBACKS[userId].dashboard);
-    setStats(FALLBACKS[userId].stats);
-    setCalls(FALLBACKS[userId].history);
-  };
+  useEffect(() => {
+    if (isLoggedIn) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      fetchDashboardData();
+    }
+  }, [isLoggedIn, fetchDashboardData]);
 
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
@@ -257,11 +254,7 @@ export default function App() {
   
   const getInitials = (name) => {
     if (!name) return 'U';
-    return name
-      .split(' ')
-      .map((w) => w[0])
-      .join('')
-      .toUpperCase();
+    return name.trim().charAt(0).toUpperCase();
   };
 
   
