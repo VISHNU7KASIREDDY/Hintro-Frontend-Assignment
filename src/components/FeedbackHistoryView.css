@@ -1,0 +1,230 @@
+.feedback-history-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.feedback-header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+}
+
+.feedback-history-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.feedback-history-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.feedback-header-actions {
+  display: flex;
+  align-items: center;
+}
+
+
+.feedback-desktop-view {
+  display: block;
+  width: 100%;
+}
+
+.feedback-table-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.feedback-td-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.feedback-td-rating {
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+.feedback-td-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.desc-bullet-item {
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.followup-bullet {
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  padding-left: 12px;
+}
+
+
+.feedback-mobile-view {
+  display: none;
+  width: 100%;
+}
+
+.feedback-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.feedback-history-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.feedback-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feedback-card-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.feedback-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star-active-icon {
+  color: var(--star-active);
+}
+
+.star-muted-icon {
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+.feedback-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feedback-desc-text {
+  font-size: 0.84rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.feedback-card-followup {
+  background: var(--bg-secondary);
+  border-left: 2px solid var(--accent-primary);
+  padding: 8px 10px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.followup-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.followup-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.feedback-card-footer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+  padding-top: 8px;
+}
+
+
+.feedback-empty-state-card {
+  width: 100%;
+}
+
+.empty-table {
+  border-bottom: none;
+}
+
+.empty-table-body {
+  padding: 80px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.empty-message-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.feedback-mobile-empty {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 50px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+
+@media (max-width: 768px) {
+  .feedback-desktop-view {
+    display: none;
+  }
+  .feedback-mobile-view {
+    display: block;
+  }
+  .feedback-header-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 16px;
+  }
+  .feedback-header-actions {
+    width: 100%;
+  }
+  .feedback-header-actions button {
+    flex: 1;
+  }
+}
